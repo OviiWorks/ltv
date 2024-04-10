@@ -17,9 +17,11 @@ echo "Lietotājs izveidots un pievienots sudo un docker grupās."
 groups $username
 # Kopē instalacijas failus uz jaunā lietotāja home direktoriju
 echo "Kopēju nepieciešamos instalacijas failus uz jauno lietotāja home direktoriju."
-mkdir /home/$username/lavarel
-cp -r config /home/$username/lavarel/
-cp install_lavarel.sh /home/$username/lavarel/
-chown -R $username:$username /home/$username/lavarel
+mkdir /home/$username/ltv
+cp -r config /home/$username/ltv/
+cp README.md /home/$username/ltv/
+cp changesitename.sh /home/$username/ltv/
+cp install_lavarel.sh /home/$username/ltv/
+chown -R $username:$username /home/$username/ltv
 
 su $username -c 'cd ~ && exec bash'

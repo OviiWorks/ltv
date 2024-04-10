@@ -22,6 +22,8 @@
 ## Mapju struktūra
 
 ### Instalacijas faili ###
+**/home/linuxlietotajs/ltv** - mape kurā atrodas visi nepieciešamie instalacijas faili.
+
 **Config** - Konfigurācijas faili, kuri tiks nolasīti laižot dokera konteinerus.
     
    * **mysql_my.cnf** - Mysql konfiguracijas fails kurš tiks sasaistīts ar datubāzes konteineru.
@@ -32,7 +34,7 @@
 
 > useradd.sh nepieciešams izmantot, ja nav izveidots ne root linux lietotajs priekš aplikācijas izveides. Ja lietotajs jau ir izveidots tad šis skripts nav nepieciešams.
 
-**changesitename.sh** - Skripts kas nomaina nginx konfigurācijā sitename. default = localhost
+**changesitename.sh** - Skripts kas nomaina nginx konfigurācijā sitename pirms instalācijas. default = localhost
 
 **laravel_instal.sh** - Šis skripts prasa ievadīt projekta nosaukumu, datubāzes paroli un webhook adresi. Pēc attiecīgo vērtību ievades tiek veiktas sekojošas darbības.
 
@@ -44,6 +46,27 @@
 6. Pārbauda visus konteineri ir palaisti un attieciīgi izvada paziņojumu vai ir vai nav palaists.
 7. Palaiž composer instalaciju jaunajā app containerī, ģenerē atslēgu un migrē datubāzi.
 8. Kad viss ir pabeigts tad saņem informāciju par docker engine un ubuntu versiju un nosūta ziņojumu izmantojot webhook.
+
+### Pēc instalācijas mapes un faili. ###
+**/home/linuxlietotajs/applikacijasnosaukums** - Galvenā mape kur atrodas gan Laravel bazes faili, gan visi pārējie faili un mapes kuras izmanto docker konteineri.
+
+**Dockerfile** - fails kurš nepieciešams kad palaiž docker-compose, lai palaistu app konteineru.
+
+**docker-compose.yml** - fails kurš nepieciešams lai palaistu visus konteinerus.
+
+**mysql** (Mape) - vieta kur atrodas my.cnf kur var rediģēt mysql iestatijumus kuri pēctam tiks pielietoti datubazes konteineri.
+
+**nginx** (Mape) - vieta kur atrodas nginx webservera konfigurācijas fails. Šeit var labot sitename un citu nepieciešamo konfigurāciju kas nepieciešama priekš webserver konteinera pēc instalācijas.
+
+**nginx-logs** (Mape) - Šeit atspoguļojās acces.log un error.log žurnālfaili no nginx webservera konteinera.
+
+**php** (Mape) - vieta kur atrodas local.ini fails kur var rediģēt vai pievienot nepieciešamo php konfigurāciju ko izmantos app konteineris.
+
+
+
+
+
+
 
 ## Instalacija
 
@@ -105,6 +128,11 @@ git clone https://github.com/OviiWorks/ltv.git
  ### Vēlamais rezultāts
 Ja instalacija notikursi veiksmīgi tad atverot adresi http://localhost vai ja izmantots 4. punkts tad atver adresi http://noraditamajaslapasadrese un būtu jāatveras Lavarel welcome page.
 Kā arī būtu jāsaņem caur webhook ubuntu un docker engine versijas.
+
+Ievadot komandu tiks izvadīta informācija par trīs konteineriem, app (programmas kas nepieciešamas, lai laravel strādātu), webserver (nginx), db (mysql).
+```
+docker ps 
+```
 
 ## Papildus informācija
 ### Webhook
