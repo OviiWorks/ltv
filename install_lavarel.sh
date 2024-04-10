@@ -154,9 +154,9 @@ EOF
 mkdir -p ~/$appname/nginx/conf.d
 mkdir -p ~/$appname/mysql/conf.d
 mkdir -p ~/$appname/php/conf.d
-cp ~/config/nginx.conf ~/$appname/nginx/conf.d/$appname.conf
-cp ~/config/mysql_my.cnf ~/$appname/mysql/my.cnf
-cp ~/config/php_local.ini ~/$appname/php/local.ini
+cp ~/lavarel/config/nginx.conf ~/$appname/nginx/conf.d/$appname.conf
+cp ~/lavarel/config/mysql_my.cnf ~/$appname/mysql/my.cnf
+cp ~/lavarel/config/php_local.ini ~/$appname/php/local.ini
 
 cd ~/$appname/
 
